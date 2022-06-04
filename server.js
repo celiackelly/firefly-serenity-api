@@ -30,6 +30,9 @@ const episodes = {
 
 app.get('/api/episodes/:epNumber', (request, response) => {
     const epNumber = request.params.epNumber
-    response.json(episodes[epNumber])
-    console.log(episodes[epNumber])
+    if (episodes[epNumber]) {
+        response.json(episodes[epNumber])
+    } else {
+        throw new Error('No episode found')
+    }
 })
